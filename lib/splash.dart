@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'screen.dart';
+import 'display.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return Screen();
+          return Display();
         },
       ),
     );});

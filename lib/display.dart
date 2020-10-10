@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Screen extends StatefulWidget {
+class Display extends StatefulWidget {
   @override
-  _ScreenState createState() => _ScreenState();
+  _DisplayState createState() => _DisplayState();
 }
 
-class _ScreenState extends State<Screen> {
+class _DisplayState extends State<Display> {
 
   Widget textOutput(String input)
   {
