@@ -1,5 +1,6 @@
 import 'package:cloudy/location.dart';
 import 'package:http/http.dart';
+import 'dart:convert';
 
 class Weather {
   String _apiKey = '2a2ce2489341ecb5e10e6ddaa8479171';
