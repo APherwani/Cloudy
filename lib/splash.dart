@@ -8,21 +8,31 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  int temp;
+
   @override
   void initState() {
     super.initState();
     getWeatherInfo();
   }
 
-  void getWeatherInfo() {
+  void getWeatherInfo() async {
     // grab weather info from api
-    Navigator.push(
+    Duration three = Duration(seconds: 3);
+
+    // this is temporary. Will replace with another way
+    // to move to Screen.
+
+    // Needed to add a delay to let flutter draw the splash page
+    await Future.delayed(three, (){Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) {
+      MaterialPageRoute(
+        builder: (context) {
           return Screen();
         },
       ),
-    );
+    );});
+    
   }
 
   @override
