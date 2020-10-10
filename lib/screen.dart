@@ -6,6 +6,25 @@ class Screen extends StatefulWidget {
 }
 
 class _ScreenState extends State<Screen> {
+
+  Widget textOutput(String input)
+  {
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Text(
+          input,
+          style: TextStyle(
+            fontSize: 40,
+            fontWeight: FontWeight.bold
+          ),
+        ),
+      ),
+    );
+  }
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,12 +37,10 @@ class _ScreenState extends State<Screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Text('Orlando, Fl'),
-                ),
-              ),
+              textOutput('Orlando, FL'),
+              textOutput('90°'),
+              textOutput('Insert Emoji here'),
+              
             ],
           ),
         ),
