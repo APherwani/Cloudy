@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloudy/location.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
@@ -8,6 +10,7 @@ class Weather {
 
   Future<dynamic> getWeather() async {
     Location location = Location();
+    await location.trackLocation();
     String url =
         "${_owmURL}lat=${location.getLatitude()}&lon=${location.getLongitude()}&exclude=minutely,alerts&units=imperial&appid=$_apiKey";
     Response response = await get(url);

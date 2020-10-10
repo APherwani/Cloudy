@@ -3,9 +3,6 @@ import 'package:geolocator/geolocator.dart';
 class Location {
   double _latitude, _longitude;
 
-  Location() {
-    trackLocation();
-  }
   Future<void> trackLocation() async {
     Position position =
         await getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
@@ -13,11 +10,11 @@ class Location {
     _longitude = position.longitude;
   }
 
-  double getLatitude() {
-    return _latitude;
+  int getLatitude() {
+    return _latitude.toInt();
   }
 
-  double getLongitude() {
-    return _longitude;
+  int getLongitude() {
+    return _longitude.toInt();
   }
 }
