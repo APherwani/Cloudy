@@ -9,16 +9,23 @@ class _ScreenState extends State<Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RaisedButton(
-              child: Text('press me'),
-              onPressed: (){
-              Navigator.pop(context);
-            })
-          ],
+      appBar: AppBar(
+        title: Text('Cloudy'),
+        backgroundColor: Colors.blueGrey,
+      ),
+      body: SafeArea(
+              child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text('Orlando, Fl'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
