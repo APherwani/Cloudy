@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'display.dart';
+import 'weather.dart';
+
 
 class SplashPage extends StatefulWidget {
   @override
@@ -17,13 +19,14 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void getWeatherInfo() async {
-    // grab weather info from api
+    /*/ grab weather info from api
     Duration three = Duration(seconds: 3);
 
     // this is temporary. Will replace with another way
     // to move to Screen.
 
     // Needed to add a delay to let flutter draw the splash page
+    
     await Future.delayed(three, (){Navigator.push(
       context,
       MaterialPageRoute(
@@ -32,7 +35,16 @@ class _SplashPageState extends State<SplashPage> {
         },
       ),
     );});
-    
+    */
+    Weather weather = Weather();
+    var weatherInfo = await weather.getWeather();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context){
+        return Display(weatherInfo: weatherInfo);
+      })
+    );
+
   }
 
   @override

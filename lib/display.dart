@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Display extends StatefulWidget {
+  Display({this.weatherInfo});
+  final weatherInfo;
   @override
   _DisplayState createState() => _DisplayState();
 }
 
 class _DisplayState extends State<Display> {
+
+  Color background = Colors.blueGrey;
 
   Widget textOutput(String input)
   {
@@ -30,7 +34,7 @@ class _DisplayState extends State<Display> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cloudy'),
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: background,
       ),
       body: SafeArea(
               child: Center(
