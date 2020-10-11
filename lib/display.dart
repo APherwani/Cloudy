@@ -14,10 +14,6 @@ class _DisplayState extends State<Display> {
   Weather weather = Weather();
   var city;
   double temp;
-  List <int> day = [];
-  List <int> min = [];
-  List <int> max = [];
-
 
   Widget textOutput(String input) {
     return Expanded(
@@ -61,12 +57,7 @@ class _DisplayState extends State<Display> {
       //city = getCityName();
       //print(city);
       temp = weatherInfo['current']['temp'];
-      //print('$temp');
-      for(int i = 1; i <=5; i++){
-        day[i] = weatherInfo['daily'][i]['temp']['day'];
-        min[i] = weatherInfo['daily'][i]['temp']['min'];
-        max[i] = weatherInfo['daily'][i]['temp']['max'];
-      }
+      print('$temp');
     });
   }
 
@@ -84,41 +75,17 @@ class _DisplayState extends State<Display> {
             children: [
               textOutput('${temp.toInt()} °F'),
               //textOutput('${weather['current']['temp']}°'),
+              textOutput('Insert Emoji here'),
+              RaisedButton(onPressed: (){
+                updateInfo(widget.weatherInfo);
+              }),
               Row(
                 children: [
-                  Column(
-                    children: [
-                      Text(
-                        'Day: ${weatherInfo['daily'][1]['temp']['day']}'
-                      ),
-                      Text(
-                        'Min: ${min[1]}'
-                      ),
-                      Text(
-                        'MAx: ${max[1]}'
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      textOutput('${temp.toInt()} °F'),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      textOutput('${temp.toInt()} °F'),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      textOutput('${temp.toInt()} °F'),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      textOutput('${temp.toInt()} °F'),
-                    ],
-                  ),
+                  textOutput('${temp.toInt()} °F'),
+                  textOutput('${temp.toInt()} °F'),
+                  textOutput('${temp.toInt()} °F'),
+                  textOutput('${temp.toInt()} °F'),
+                  textOutput('${temp.toInt()} °F'),
                 ],
               )
             ],
