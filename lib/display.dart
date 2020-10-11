@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'weather.dart';
 
 class Display extends StatefulWidget {
   Display({this.weatherInfo});
   final weatherInfo;
+
   @override
   _DisplayState createState() => _DisplayState();
 }
@@ -10,6 +12,8 @@ class Display extends StatefulWidget {
 class _DisplayState extends State<Display> {
 
   Color background = Colors.blueGrey;
+  var city;
+ Weather weather = Weather();
 
   Widget textOutput(String input)
   {
@@ -27,7 +31,16 @@ class _DisplayState extends State<Display> {
     );
   }
 
-  
+  Future<dynamic> getWeather() async {
+    var str = await weather.getWeather();
+    return str;
+  }
+
+  Future<dynamic> getCityName() async {
+    Weather weather = Weather();
+    var city = await weather.getCity();
+    return city['name'];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +54,14 @@ class _DisplayState extends State<Display> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              textOutput('Orlando, FL'),
-              textOutput('90°'),
+              textOutput(getCityName()),
+              textOutput('${weather['current']['temp']}°'),
               textOutput('Insert Emoji here'),
-              
+              Row(
+                children: [
+                  // get weather, get city
+                ],
+              )
             ],
           ),
         ),
