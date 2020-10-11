@@ -3,27 +3,36 @@
 import 'package:flutter/material.dart';
 import 'package:cloudy/weather.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  void printWeather() async {
+  var str;
+
+  void getWeather() async {
     Weather weather = Weather();
     var str = await weather.getWeather();
-    print(str);
+    // print(str);
+    // print(str['hourly'][0]);
+    var cityName = await weather.getCity();
+    print(cityName['name']);
   }
+
+  //void getBackgroundColor() {}
 
   @override
   Widget build(BuildContext context) {
+    getWeather();
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       theme: ThemeData.dark(),
       home: Scaffold(
+        //backgroundColor: getBackgroundColor(),
         body: Center(
           child: RaisedButton(
             onPressed: () {
-              printWeather();
+              getWeather();
             },
             child: Text(
               'print weather info',
