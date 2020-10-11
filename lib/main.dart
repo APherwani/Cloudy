@@ -2,9 +2,9 @@
 
 import 'package:cloudy/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:cloudy/weather.dart';
 
-void main()
-{
+void main() {
   runApp(MyApp());
 }
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       title: 'Cloudy',
-      home: Scaffold(        
+      home: Scaffold(
         body: SplashPage(),
       ),
     );

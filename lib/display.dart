@@ -10,7 +10,7 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
-  Color background = Colors.blueGrey;
+  Color background;
   Weather weather = Weather();
   var city;
   double temp;
@@ -59,8 +59,6 @@ class _DisplayState extends State<Display> {
         city = '';
         temp = 0;
       }
-      //city = getCityName();
-      //print(city);
       temp = weatherInfo['current']['temp'];
       print('$temp');
       d1Day = weatherInfo['daily'][1]['temp']['day'];
@@ -85,16 +83,20 @@ class _DisplayState extends State<Display> {
       h5 = weatherInfo['hourly'][5]['temp'];
       condition = weatherInfo['current']['weather'][0]['main'];
       print('$h1');
+      // set background color
+      int dt = weatherInfo['current']['dt'];
+      int sunrise = weatherInfo['current']['sunrise'];
+      int sunset = weatherInfo['current']['sunset'];
+      if (dt >= sunrise && dt <= sunset) {
+        background = Colors.blueAccent;
+      }
+      background = Colors.redAccent;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Cloudy'),
-        backgroundColor: background,
-      ),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -103,10 +105,12 @@ class _DisplayState extends State<Display> {
               textOutput('${temp.toInt()} °F'),
               //textOutput('${weather['current']['temp']}°'),
               textOutput('Insert Emoji here'),
-              Text('5 Hour Forecast',
-              style: TextStyle(
-                fontSize: 20,
-              ),),
+              Text(
+                '5 Hour Forecast',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
               SizedBox(
                 height: 20.0,
                 width: double.infinity,
@@ -115,20 +119,22 @@ class _DisplayState extends State<Display> {
                 ),
               ),
               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text('${h1.toInt()}'),
-                    Text('${h2.toInt()}'),
-                    Text('${h3.toInt()}'),
-                    Text('${h4.toInt()}'),
-                    Text('${h5.toInt()}'),
-                  ],
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text('${h1.toInt()}'),
+                  Text('${h2.toInt()}'),
+                  Text('${h3.toInt()}'),
+                  Text('${h4.toInt()}'),
+                  Text('${h5.toInt()}'),
+                ],
               ),
               SizedBox(height: 100),
-              Text('5 Day Forecast',
-              style: TextStyle(
-                fontSize: 20,
-              ),),
+              Text(
+                '5 Day Forecast',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
               SizedBox(
                 height: 20.0,
                 width: double.infinity,
