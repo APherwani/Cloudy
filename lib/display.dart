@@ -10,22 +10,22 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
-
   Color background = Colors.blueGrey;
+  Weather weather = Weather();
   var city;
- Weather weather = Weather();
+  double temp;
+  List <int> day = [];
+  List <int> min = [];
+  List <int> max = [];
 
-  Widget textOutput(String input)
-  {
+
+  Widget textOutput(String input) {
     return Expanded(
       child: Container(
         padding: EdgeInsets.all(10),
         child: Text(
           input,
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold
-          ),
+          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -36,10 +36,38 @@ class _DisplayState extends State<Display> {
     return str;
   }
 
-  Future<dynamic> getCityName() async {
+  Future<String> getCityName() async {
     Weather weather = Weather();
     var city = await weather.getCity();
-    return city['name'];
+    print(city['name']);
+    String name = city['name'];
+    return name;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    updateInfo(widget.weatherInfo);
+  }
+
+  void updateInfo(dynamic weatherInfo) {
+    print('in update info');
+    setState(() {
+      print('in setState');
+      if(weatherInfo == null){
+        city = '';
+        temp = 0;
+      }
+      //city = getCityName();
+      //print(city);
+      temp = weatherInfo['current']['temp'];
+      //print('$temp');
+      for(int i = 1; i <=5; i++){
+        day[i] = weatherInfo['daily'][i]['temp']['day'];
+        min[i] = weatherInfo['daily'][i]['temp']['min'];
+        max[i] = weatherInfo['daily'][i]['temp']['max'];
+      }
+    });
   }
 
   @override
@@ -50,16 +78,47 @@ class _DisplayState extends State<Display> {
         backgroundColor: background,
       ),
       body: SafeArea(
-              child: Center(
+        child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              textOutput(getCityName()),
-              textOutput('${weather['current']['temp']}°'),
-              textOutput('Insert Emoji here'),
+              textOutput('${temp.toInt()} °F'),
+              //textOutput('${weather['current']['temp']}°'),
               Row(
                 children: [
-                  // get weather, get city
+                  Column(
+                    children: [
+                      Text(
+                        'Day: ${weatherInfo['daily'][1]['temp']['day']}'
+                      ),
+                      Text(
+                        'Min: ${min[1]}'
+                      ),
+                      Text(
+                        'MAx: ${max[1]}'
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      textOutput('${temp.toInt()} °F'),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      textOutput('${temp.toInt()} °F'),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      textOutput('${temp.toInt()} °F'),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      textOutput('${temp.toInt()} °F'),
+                    ],
+                  ),
                 ],
               )
             ],

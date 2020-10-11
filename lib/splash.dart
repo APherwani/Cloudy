@@ -36,8 +36,7 @@ class _SplashPageState extends State<SplashPage> {
       ),
     );});
     */
-    Weather weather = Weather();
-    var weatherInfo = await weather.getWeather();
+    var weatherInfo = await Weather().getWeather();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context){
